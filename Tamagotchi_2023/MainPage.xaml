@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tamagotchi_2023.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            
+            <Label
+                Text="{Binding creature.Name}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Image
+                Source="Images/gremlin.png"
+                HeightRequest="300"
+                HorizontalOptions="Center" />
+
+
+
+            <!-- Hunger ProgressBar and Label -->
+            <!--<StackLayout HorizontalOptions="Center">
+                <Label Text="Hunger" FontSize="18" />
+                <ProgressBar Progress="{Binding Hunger}" ProgressColor="Red" WidthRequest="200"/>
+                <Button Clicked="OpenHungerPanelClicked" Text= "Give food" HorizontalOptions="Center" WidthRequest="200" HeightRequest="50"/>
+            </StackLayout>-->
+            <!-- Hunger ProgressBar and Label -->
+            
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Feed" BackgroundColor="DarkGreen" Invoked="OpenHungerPanelClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="LightGreen">
+                                <StackLayout>
+                                    <Label Text="Hunger" FontSize="18" />
+                                    <ProgressBar Progress="{Binding creature.Hunger}" ProgressColor="Black" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                    <!--<Button Margin="20,0,0,0" Clicked="OpenHungerPanelClicked" Text= "Open" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>-->
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Give drink" BackgroundColor="DarkBlue" Invoked="OpenThirstPanelClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="LightBlue">
+                                <StackLayout>
+                                    <Label Text="Thirst" FontSize="18" />
+                                    <ProgressBar Progress="{Binding creature.Thirst}" ProgressColor="Black" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                    <!--<Button Margin="20,0,0,0" Clicked="OpenHungerPanelClicked" Text= "Open" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>-->
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <!-- Thirst ProgressBar and Label -->
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <Button Margin="20,0,0,0" Clicked="DebugButtonClicked" Text= "Debug" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+
+            <StackLayout HorizontalOptions="Center">
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
