@@ -11,9 +11,36 @@ namespace Tamagotchi_2023
 {
     public class Creature : INotifyPropertyChanged
     {
+        public float hunger = 0.5f;
+        public float thirst = 0.3f;
+
         public string Name { get; set; } = "Gremlin";
-        public float Hunger { get; set; } = 0.5f;
-        public float Thirst { get; set; } = 0.5f;
+
+        public float Hunger
+        {
+            get => hunger;
+            set
+            {
+                if (hunger != value)
+                {
+                    hunger = value;
+                    OnPropertyChanged(nameof(Hunger));
+                }
+            }
+        }
+
+        public float Thirst
+        {
+            get { return thirst; }
+            set
+            {
+                if (thirst != value)
+                {
+                    thirst = value;
+                    OnPropertyChanged(nameof(Thirst));
+                }
+            }
+        }
         public float Boredom { get; set; } = 0.5f;
         public float Loneliness { get; set; } = 0.5f;
         public float Stimulation { get; set; } = 0.5f;

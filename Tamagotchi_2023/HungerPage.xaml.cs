@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls;
 using System.ComponentModel;
 
 namespace Tamagotchi_2023;
-public partial class HungerPage : ContentPage, INotifyPropertyChanged
+public partial class HungerPage : ContentPage
 {
     private float progressBarValue = 0f;
 
@@ -31,12 +31,9 @@ public partial class HungerPage : ContentPage, INotifyPropertyChanged
 
     private void CroissantButtonClicked(object sender, EventArgs e)
     {
-        if (creature.Hunger > 0)
-        {
-            creature.Hunger -= 0.1f;
-            Math.Clamp(creature.Hunger, 0, 1);
-        }
-        progressBarValue = creature.Hunger;
+        creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        creature.Hunger -= 0.1f;
+        ProgressBarValue = creature.Hunger;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
     }
 }

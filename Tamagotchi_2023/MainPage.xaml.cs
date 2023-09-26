@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tamagotchi_2023;
 public partial class MainPage : ContentPage, INotifyPropertyChanged
@@ -13,9 +14,9 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     //    get => GetValue();
     //}
 
-    public Creature creature 
-    { 
-        get; 
+    public Creature creature
+    {
+        get;
         set;
     }
     //    = new Creature
@@ -25,17 +26,16 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     //    Thirst = 0.1f
     //};
 
-
     public MainPage()
     {
         BindingContext = this;
         InitializeComponent();
         var newCreatureStore = DependencyService.Get<IDataStore<Creature>>();
-        if (!newCreatureStore.CreateItem(creature))
-        {
-            creature = newCreatureStore.ReadItem();
-        }
-        creature = newCreatureStore.ReadItem();
+        newCreatureStore.CreateItem(creature);
+        //if (!newCreatureStore.CreateItem(creature))
+        //{
+        //    creature = newCreatureStore.ReadItem();
+        //}
     }
 
     private void AddWaterButtonClicked(object sender, EventArgs e)
@@ -65,14 +65,17 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
 
     private void DebugButtonClicked(object sender, EventArgs e)
     {
-
-        creature = new Creature()
-        {
-            Name = "DebugName",
-            Hunger = 1f,
-            Thirst = 1f
-        };
+        var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        loadedCreature.Hunger = 1f;
+        creature = loadedCreature;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+
+        //creature = new Creature()
+        //{
+        //    Name = "DebugName",
+        //    Hunger = 1f,
+        //    Thirst = 1f
+        //};
         //creature = newCreatureStore.CreateItem<Creature>(creature);
 
     }
