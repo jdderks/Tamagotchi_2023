@@ -8,10 +8,10 @@
 
 
 
-
     <VerticalStackLayout
             Spacing="25"
             Padding="30,0">
+    <!--<local:HungerView/>-->
         
         <Image Source="Images/gremlin.png"
                HeightRequest="300"

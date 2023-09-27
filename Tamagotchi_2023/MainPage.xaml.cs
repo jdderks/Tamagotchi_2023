@@ -38,6 +38,7 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         //}
     }
 
+
     private void AddWaterButtonClicked(object sender, EventArgs e)
     {
         //if (gremlin.Thirst > 0 && gremlin.Thirst < 1)
@@ -51,6 +52,14 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         //Preferences.Set("LastTime", elapsed.ToString());
         //var debug = Preferences.Get("LastTime","");
         //Console.Write(debug);
+    }
+
+    protected override void OnAppearing()
+    {
+        var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        creature = loadedCreature;
+        DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+        base.OnAppearing();
     }
 
     private void OpenHungerPanelClicked(object sender, EventArgs e)

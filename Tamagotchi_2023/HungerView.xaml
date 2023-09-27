@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tamagotchi_2023.HungerView">
     <VerticalStackLayout>
-        <Label Text="Thirst" FontSize="18" />
         <ProgressBar Progress="{Binding creature.Hunger}" ProgressColor="Black" WidthRequest="300"/>
     </VerticalStackLayout>
     
