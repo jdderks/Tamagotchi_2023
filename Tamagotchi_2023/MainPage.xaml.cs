@@ -75,18 +75,11 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     private void DebugButtonClicked(object sender, EventArgs e)
     {
         var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        loadedCreature.Name = "Gremlin";
         loadedCreature.Hunger = 1f;
+        loadedCreature.Thirst = 1f;
         creature = loadedCreature;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
-
-        //creature = new Creature()
-        //{
-        //    Name = "DebugName",
-        //    Hunger = 1f,
-        //    Thirst = 1f
-        //};
-        //creature = newCreatureStore.CreateItem<Creature>(creature);
-
     }
 
 

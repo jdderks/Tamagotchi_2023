@@ -6,24 +6,19 @@
              xmlns:local="clr-namespace:Tamagotchi_2023" 
              x:DataType="local:ThirstPage">
 
-
-
     <VerticalStackLayout
             Spacing="25"
             Padding="30,0">
-    <!--<local:HungerView/>-->
-        
-        <Image Source="Images/gremlin.png"
+        <StackLayout HorizontalOptions="Center">
+            <Image Source="Images/gremlin.png"
                HeightRequest="300"
                HorizontalOptions="Center" />
+            <!--<Label Text="Remember to not feed the Gremlin after midnight" FontSize="14" HorizontalOptions="Center" TextColor="Red" BackgroundColor="Black"/>-->
+            <Label Text="Thirst" FontSize="18" Padding="0,10,0,0" />
+            <ProgressBar Progress="{Binding ProgressBarValue}" ProgressColor="Black" WidthRequest="300"/>
+        </StackLayout>
+        <Button Text="Give glass of water" Clicked="GiveGlassOfWaterClicked" />
 
-        <local:HungerView />
 
-        <Label Text="{Binding FlavourText}"
-               VerticalOptions="Center" 
-               HorizontalOptions="Center"/>
-        <Button Text="Give water" Clicked="Button_Clicked" />
-        
-        
     </VerticalStackLayout>
 </ContentPage>

@@ -5,38 +5,45 @@ namespace Tamagotchi_2023;
 public partial class ThirstPage : ContentPage
 {
 
-    private string _flavourText = "EEE";
-    public string FlavourText
+    private float progressBarValue = 0f;
+
+    public float ProgressBarValue
     {
-        get { return _flavourText; }
+        get { return progressBarValue; }
         set
         {
-            if (_flavourText != value)
+            if (progressBarValue != value)
             {
-                _flavourText = value;
-                OnPropertyChanged();
+                progressBarValue = value;
+                OnPropertyChanged(nameof(progressBarValue));
             }
         }
     }
 
+    public Creature creature;
+
     public ThirstPage()
 	{
-		InitializeComponent();
-	}
+        BindingContext = this;
+        InitializeComponent();
+        creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        ProgressBarValue = creature.Hunger;
+    }
 
-
-    private void Button_Clicked(object sender, EventArgs e)
+    protected override void OnAppearing()
     {
-        string[] gremlinreactions =
-            {
-                "nice water",
-                "wow",
-                "im not thirsty now",
-                "thank you",
-                "HOOYJAAAAA"
-            };
-        Random rand = new Random();
-        int selection = rand.Next(0, gremlinreactions.Length);
-        FlavourText = gremlinreactions[selection];
+        var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        creature = loadedCreature;
+        ProgressBarValue = creature.Thirst;
+        DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+        base.OnAppearing();
+    }
+
+    private void GiveGlassOfWaterClicked(object sender, EventArgs e)
+    {
+        creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        creature.Thirst -= 0.1f;
+        DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+        ProgressBarValue = creature.Thirst;
     }
 }

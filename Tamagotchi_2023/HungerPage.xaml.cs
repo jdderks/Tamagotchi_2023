@@ -28,12 +28,20 @@ public partial class HungerPage : ContentPage
         creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
         ProgressBarValue = creature.Hunger;
     }
+    protected override void OnAppearing()
+    {
+        var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
+        creature = loadedCreature;
+        ProgressBarValue = creature.Hunger;
+        DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+        base.OnAppearing();
+    }
 
     private void CroissantButtonClicked(object sender, EventArgs e)
     {
         creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
-        creature.Hunger -= 0.1f;
         ProgressBarValue = creature.Hunger;
+        creature.Hunger -= 0.1f;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
     }
 }
