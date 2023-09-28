@@ -1,10 +1,7 @@
-using System.ComponentModel;
-
 namespace Tamagotchi_2023;
 
-public partial class ThirstPage : ContentPage
+public partial class StimulationPage : ContentPage
 {
-
     private float progressBarValue = 0f;
 
     public float ProgressBarValue
@@ -22,28 +19,19 @@ public partial class ThirstPage : ContentPage
 
     public Creature creature;
 
-    public ThirstPage()
+    public StimulationPage()
     {
         BindingContext = this;
         InitializeComponent();
         creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
-        ProgressBarValue = creature.Hunger;
+        ProgressBarValue = creature.Stimulation;
     }
-
     protected override void OnAppearing()
     {
         var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
         creature = loadedCreature;
-        ProgressBarValue = creature.Thirst;
+        ProgressBarValue = creature.Stimulation;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
         base.OnAppearing();
-    }
-
-    private void GiveGlassOfWaterClicked(object sender, EventArgs e)
-    {
-        creature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
-        creature.Thirst -= 0.1f;
-        DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
-        ProgressBarValue = creature.Thirst;
     }
 }

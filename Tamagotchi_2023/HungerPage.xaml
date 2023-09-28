@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tamagotchi_2023.HungerPage"
              xmlns:local="clr-namespace:Tamagotchi_2023" 
-             Title="Give Gremlin food?">
+             Title="Hunger">
     <VerticalStackLayout>
         <!-- Hunger ProgressBar and Label -->
         <StackLayout HorizontalOptions="Center">

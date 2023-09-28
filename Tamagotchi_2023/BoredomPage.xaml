@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tamagotchi_2023.BoredomPage"
+             Title="BoredomPage">
+    <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0">
+        <StackLayout HorizontalOptions="Center">
+            <Image Source="Images/gremlin.png"
+               HeightRequest="300"
+               HorizontalOptions="Center" />
+            <!--<Label Text="Remember to not feed the Gremlin after midnight" FontSize="14" HorizontalOptions="Center" TextColor="Red" BackgroundColor="Black"/>-->
+            <Label Text="Boredom" FontSize="18" Padding="0,10,0,0" HorizontalOptions="Center"/>
+            <ProgressBar Progress="{Binding ProgressBarValue}" ProgressColor="Black" WidthRequest="300"/>
+        </StackLayout>
+        <Button Text="Play with Gremlin" Clicked="PlayWithGremlinButtonClicked" />
+
+
+    </VerticalStackLayout>
+</ContentPage>

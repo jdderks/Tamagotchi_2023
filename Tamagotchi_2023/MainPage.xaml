@@ -21,23 +21,14 @@
                 HeightRequest="300"
                 HorizontalOptions="Center" />
 
-
-
-            <!-- Hunger ProgressBar and Label -->
-            <!--<StackLayout HorizontalOptions="Center">
-                <Label Text="Hunger" FontSize="18" />
-                <ProgressBar Progress="{Binding Hunger}" ProgressColor="Red" WidthRequest="200"/>
-                <Button Clicked="OpenHungerPanelClicked" Text= "Give food" HorizontalOptions="Center" WidthRequest="200" HeightRequest="50"/>
-            </StackLayout>-->
-            <!-- Hunger ProgressBar and Label -->
-            
+            <!--Hunger vital-->
             <StackLayout HorizontalOptions="Center">
                 <HorizontalStackLayout>
                     <StackLayout>
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Execute">
-                                    <SwipeItem Text="Feed" BackgroundColor="DarkGreen" Invoked="OpenHungerPanelClicked"/>
+                                    <SwipeItem Text="Open" BackgroundColor="DarkGreen" Invoked="OpenHungerPanelClicked"/>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <Frame BackgroundColor="LightGreen">
@@ -48,17 +39,17 @@
                             </Frame>
                         </SwipeView>
                     </StackLayout>
-                    <!--<Button Margin="20,0,0,0" Clicked="OpenHungerPanelClicked" Text= "Open" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>-->
                 </HorizontalStackLayout>
             </StackLayout>
 
+            <!--Thirst vital-->
             <StackLayout HorizontalOptions="Center">
                 <HorizontalStackLayout>
                     <StackLayout>
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Execute">
-                                    <SwipeItem Text="Give drink" BackgroundColor="DarkBlue" Invoked="OpenThirstPanelClicked"/>
+                                    <SwipeItem Text="Open" BackgroundColor="DarkBlue" Invoked="OpenThirstPanelClicked"/>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <Frame BackgroundColor="LightBlue">
@@ -69,11 +60,94 @@
                             </Frame>
                         </SwipeView>
                     </StackLayout>
-                    <!--<Button Margin="20,0,0,0" Clicked="OpenHungerPanelClicked" Text= "Open" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>-->
                 </HorizontalStackLayout>
             </StackLayout>
 
-            <!-- Thirst ProgressBar and Label -->
+            <!--boredom panel-->
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Open" BackgroundColor="DarkBlue" Invoked="OpenBoredomPanelClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="LightGoldenrodYellow">
+                                <StackLayout>
+                                    <Label Text="Boredom" FontSize="18" />
+                                    <ProgressBar Progress="{Binding creature.Boredom}" ProgressColor="Black" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <!--tiredness panel-->
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Open" BackgroundColor="DarkBlue" Invoked="OpenTirednessPanelClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="DarkBlue">
+                                <StackLayout>
+                                    <Label Text="Tiredness" FontSize="18" TextColor="White"/>
+                                    <ProgressBar Progress="{Binding creature.Tiredness}" ProgressColor="White" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <!--stimulation panel-->
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Open" BackgroundColor="DarkBlue" Invoked="OpenStimulationPanelClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="DarkRed">
+                                <StackLayout>
+                                    <Label Text="Stimulation" FontSize="18" TextColor="White"/>
+                                    <ProgressBar Progress="{Binding creature.Stimulation}" ProgressColor="White" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+            
+            <!--loneliness panel-->
+            <StackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout>
+                    <StackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Execute">
+                                    <SwipeItem Text="Open" BackgroundColor="DarkBlue" Invoked="OpenLonelinessPanel"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Frame BackgroundColor="Black">
+                                <StackLayout>
+                                    <Label Text="Loneliness" FontSize="18" TextColor="White"/>
+                                    <ProgressBar Progress="{Binding creature.Loneliness}" ProgressColor="White" WidthRequest="300"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </StackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+            <!-- Debug button -->
             <StackLayout HorizontalOptions="Center">
                 <HorizontalStackLayout>
                     <Button Margin="20,0,0,0" Clicked="DebugButtonClicked" Text= "Debug" HorizontalOptions="Center" WidthRequest="100" HeightRequest="40"/>
