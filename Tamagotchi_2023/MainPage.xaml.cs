@@ -19,18 +19,6 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
 
     public MainPage()
     {
-        //Timer that checks the time while app is closed
-        var nowTime = DateTime.Now;
-
-        var deltaTime = nowTime - previousTime;
-        hoursElapsedSinceLastOpened = (int)deltaTime.TotalHours;
-
-        for (int i = 0; i < hoursElapsedSinceLastOpened; i++)
-        {
-            IncreaseVitals(appOpen: false);
-        }
-
-
         //Timer that checks the time while app is open
         int amountOfSecondsBetweenVitalUpdates = 10;
         timer = new Timer(TimerCallback, null, 0, amountOfSecondsBetweenVitalUpdates * 1000);
@@ -39,24 +27,35 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         var newCreatureStore = DependencyService.Get<IDataStore<Creature>>();
         newCreatureStore.CreateItem(creature);
-        //if (!newCreatureStore.CreateItem(creature))
-        //{
-        //    creature = newCreatureStore.ReadItem();
-        //}
+
     }
 
 
     protected override void OnDisappearing()
     {
-        previousTime = DateTime.Now;
+        Preferences.Set("LastTime", DateTime.Now);
+        //previousTime = DateTime.Now;
         base.OnDisappearing();
     }
 
     protected override void OnAppearing()
     {
+        //Timer that checks the time while app is closed
+        var nowTime = DateTime.Now;
+        var deltaTime = nowTime - Preferences.Get("LastTime", DateTime.Now);
+        Console.WriteLine("Time passed since last calculation:" + deltaTime.TotalHours);
+        hoursElapsedSinceLastOpened = (int)deltaTime.TotalHours;
+
+        for (int i = 0; i < hoursElapsedSinceLastOpened; i++)
+        {
+            IncreaseVitals(appOpen: false);
+        }
+
+
         var loadedCreature = DependencyService.Get<IDataStore<Creature>>().ReadItem();
         creature = loadedCreature;
         DependencyService.Get<IDataStore<Creature>>().UpdateItem(creature);
+        Preferences.Set("LastTime", DateTime.Now);
         base.OnAppearing();
     }
 
